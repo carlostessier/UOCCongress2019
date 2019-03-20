@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Workspace Name="PR1" Database="">
+<CodeLite_Workspace Name="PR1" Database="" Version="10.0.0">
   <Project Name="UOCCongress" Path="UOCCongress/UOCCongress.project" Active="Yes"/>
   <Project Name="UOCOrganization" Path="UOCOrganization/UOCOrganization.project" Active="No"/>
   <BuildMatrix>

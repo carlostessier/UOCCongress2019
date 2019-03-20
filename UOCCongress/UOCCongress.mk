@@ -5,21 +5,21 @@
 ## Debug
 ProjectName            :=UOCCongress
 ConfigurationName      :=Debug
-WorkspacePath          := "/home/uoc/Escritorio/PR1/PR1"
-ProjectPath            := "/home/uoc/Escritorio/PR1/PR1/UOCCongress"
+WorkspacePath          :=/home/uoc/UOCCongress2019
+ProjectPath            :=/home/uoc/UOCCongress2019/UOCCongress
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=UOC
+User                   :=uoc
 Date                   :=20/03/19
-CodeLitePath           :="/home/uoc/.codelite"
-LinkerName             :=/usr/bin/g++
-SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
+CodeLitePath           :=/home/uoc/.codelite
+LinkerName             :=gcc
+SharedObjectLinkerName :=gcc -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
-PreprocessSuffix       :=.i
+PreprocessSuffix       :=.o.i
 DebugSwitch            :=-g 
 IncludeSwitch          :=-I
 LibrarySwitch          :=-l
@@ -31,7 +31,7 @@ OutputFile             :=../bin/$(ProjectName)
 Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
-PreprocessOnlySwitch   :=-E
+PreprocessOnlySwitch   :=-E 
 ObjectsFileList        :="UOCCongress.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=mkdir -p
@@ -47,20 +47,20 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../lib
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := /usr/bin/ar rcu
-CXX      := /usr/bin/g++
-CC       := /usr/bin/gcc
+AR       := ar rcus
+CXX      := gcc
+CC       := gcc
 CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := /usr/bin/as
+AS       := as
 
 
 ##
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/src_main.c$(ObjectSuffix) $(IntermediateDirectory)/src_test_pr1.c$(ObjectSuffix) $(IntermediateDirectory)/src_test_suit.c$(ObjectSuffix) $(IntermediateDirectory)/src_utils.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/test_src_test_pr1.c$(ObjectSuffix) $(IntermediateDirectory)/src_main.c$(ObjectSuffix) $(IntermediateDirectory)/test_src_test_suit.c$(ObjectSuffix) $(IntermediateDirectory)/test_src_utils.c$(ObjectSuffix) 
 
 
 
@@ -91,37 +91,37 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/test_src_test_pr1.c$(ObjectSuffix): test/src/test_pr1.c $(IntermediateDirectory)/test_src_test_pr1.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/uoc/UOCCongress2019/UOCCongress/test/src/test_pr1.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/test_src_test_pr1.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/test_src_test_pr1.c$(DependSuffix): test/src/test_pr1.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/test_src_test_pr1.c$(ObjectSuffix) -MF$(IntermediateDirectory)/test_src_test_pr1.c$(DependSuffix) -MM test/src/test_pr1.c
+
+$(IntermediateDirectory)/test_src_test_pr1.c$(PreprocessSuffix): test/src/test_pr1.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/test_src_test_pr1.c$(PreprocessSuffix) test/src/test_pr1.c
+
 $(IntermediateDirectory)/src_main.c$(ObjectSuffix): src/main.c $(IntermediateDirectory)/src_main.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/uoc/Escritorio/PR1/PR1/UOCCongress/src/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_main.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "/home/uoc/UOCCongress2019/UOCCongress/src/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_main.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/src_main.c$(DependSuffix): src/main.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_main.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_main.c$(DependSuffix) -MM "src/main.c"
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_main.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_main.c$(DependSuffix) -MM src/main.c
 
 $(IntermediateDirectory)/src_main.c$(PreprocessSuffix): src/main.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_main.c$(PreprocessSuffix) "src/main.c"
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_main.c$(PreprocessSuffix) src/main.c
 
-$(IntermediateDirectory)/src_test_pr1.c$(ObjectSuffix): test/src/test_pr1.c $(IntermediateDirectory)/src_test_pr1.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/uoc/Escritorio/PR1/PR1/UOCCongress/test/src/test_pr1.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_test_pr1.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_test_pr1.c$(DependSuffix): test/src/test_pr1.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_test_pr1.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_test_pr1.c$(DependSuffix) -MM "test/src/test_pr1.c"
+$(IntermediateDirectory)/test_src_test_suit.c$(ObjectSuffix): test/src/test_suit.c $(IntermediateDirectory)/test_src_test_suit.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/uoc/UOCCongress2019/UOCCongress/test/src/test_suit.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/test_src_test_suit.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/test_src_test_suit.c$(DependSuffix): test/src/test_suit.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/test_src_test_suit.c$(ObjectSuffix) -MF$(IntermediateDirectory)/test_src_test_suit.c$(DependSuffix) -MM test/src/test_suit.c
 
-$(IntermediateDirectory)/src_test_pr1.c$(PreprocessSuffix): test/src/test_pr1.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_test_pr1.c$(PreprocessSuffix) "test/src/test_pr1.c"
+$(IntermediateDirectory)/test_src_test_suit.c$(PreprocessSuffix): test/src/test_suit.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/test_src_test_suit.c$(PreprocessSuffix) test/src/test_suit.c
 
-$(IntermediateDirectory)/src_test_suit.c$(ObjectSuffix): test/src/test_suit.c $(IntermediateDirectory)/src_test_suit.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/uoc/Escritorio/PR1/PR1/UOCCongress/test/src/test_suit.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_test_suit.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_test_suit.c$(DependSuffix): test/src/test_suit.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_test_suit.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_test_suit.c$(DependSuffix) -MM "test/src/test_suit.c"
+$(IntermediateDirectory)/test_src_utils.c$(ObjectSuffix): test/src/utils.c $(IntermediateDirectory)/test_src_utils.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/uoc/UOCCongress2019/UOCCongress/test/src/utils.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/test_src_utils.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/test_src_utils.c$(DependSuffix): test/src/utils.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/test_src_utils.c$(ObjectSuffix) -MF$(IntermediateDirectory)/test_src_utils.c$(DependSuffix) -MM test/src/utils.c
 
-$(IntermediateDirectory)/src_test_suit.c$(PreprocessSuffix): test/src/test_suit.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_test_suit.c$(PreprocessSuffix) "test/src/test_suit.c"
-
-$(IntermediateDirectory)/src_utils.c$(ObjectSuffix): test/src/utils.c $(IntermediateDirectory)/src_utils.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "/home/uoc/Escritorio/PR1/PR1/UOCCongress/test/src/utils.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_utils.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_utils.c$(DependSuffix): test/src/utils.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_utils.c$(ObjectSuffix) -MF$(IntermediateDirectory)/src_utils.c$(DependSuffix) -MM "test/src/utils.c"
-
-$(IntermediateDirectory)/src_utils.c$(PreprocessSuffix): test/src/utils.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_utils.c$(PreprocessSuffix) "test/src/utils.c"
+$(IntermediateDirectory)/test_src_utils.c$(PreprocessSuffix): test/src/utils.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/test_src_utils.c$(PreprocessSuffix) test/src/utils.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
